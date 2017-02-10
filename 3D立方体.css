@@ -1,0 +1,95 @@
+html,body{
+		width: 100%;
+		height:100%;
+		margin: 0;
+}
+body{
+	/*背景：linear-gradient渐变色
+     background: linear-gradient(direction, color-stop1, color-stop2, ...);
+	 线性渐变 - 从上到下（默认情况下）
+	 * */
+	background:linear-gradient(to right,#444,#222,#000);
+	
+	/*弹性布局,居中*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/*微调看物体位置perspective与perspective-origin配合使用*/
+	perspective: 1500px;
+	perspective-origin: 80% 50%;
+}
+main{
+	width: 200px;
+	height: 200px;
+	background-color: red;
+	/*添加关键帧动画*/
+	animation:rotation 10s infinite ;
+	/*让子标签处于3d状态*/
+	transform-style: preserve-3d;
+}
+@keyframes rotation{
+	from{
+		transform: rotateX(0deg) rotateY(0deg);
+	}
+	to{
+		transform: rotateX(360deg) rotateY(360deg);
+	}
+}
+div{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	/*opacity: 0.7;*/
+	border:2px dashed  black;
+	box-sizing: border-box;
+	/*当图片宽高一样时,使用100%与contain效果一样
+	 当图片宽高不一样时,使用100%与contain效果有所区别，建议使用100%
+	 * */
+	background-size: contain;
+}
+          /*默认情况下
+                       水平向右    x正方向
+                          向下     y正方向
+                  垂直x,y平面向外        z轴正方向
+        ① 沿着y轴旋转，正直向右，负值向左
+        ② 沿着x轴旋转，正直向上，负值向下
+ * */
+.forward{
+	background-color: yellow;
+	/*z轴垂直x,y平面向外*/
+	transform: translateZ(100px);
+	background-image: url(img/1.jpg);
+}
+.backward{
+	background-color: green;
+	transform: translateZ(-100px);
+	background-image: url(img/2.jpg);
+	
+}
+.left{
+	background-color: fuchsia;
+    /*先平移,再旋转*/
+	transform: translateX(-100px) rotateY(-90deg);
+	/*先旋转,再平移(旋转后坐标轴随之变化)*/
+    /*transform: rotateY(-90deg) translateZ(100px);*/
+	background-image: url(img/3.jpg);
+   
+}
+.right{
+	background-color: darkorange;
+	transform: translateX(100px) rotateY(90deg);
+	background-image: url(img/4.jpg);
+	
+}
+.top{
+	background-color: goldenrod;
+	transform: translateY(-100px) rotateX(90deg);
+	background-image: url(img/5.jpg);
+	
+}
+.bottom{
+	background-color: skyblue;
+	transform: translateY(100px) rotateX(90deg);
+	background-image: url(img/6.jpg);
+	
+}
